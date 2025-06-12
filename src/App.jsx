@@ -6,6 +6,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { QueryClient,useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
+import { Formsection } from './components/Formsection'
 
 const fetchdata = async () =>{
   const res = await axios.get('https://jsonplaceholder.typicode.com/posts')
@@ -70,13 +71,14 @@ function App() {
     </form>
     <div>
       <h1>fetched data</h1>
-      {data.map(post =>(
+      {data.slice(1,2).map(post =>(
         <div key={post.id}>
         <h1>{post.title}</h1>
         <h1>{post.body}</h1>
         </div>
       ))}
     </div>
+    <Formsection/>
     </>
   )
 }
