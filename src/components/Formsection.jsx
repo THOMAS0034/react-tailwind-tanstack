@@ -11,10 +11,11 @@ export const Formsection = () => {
         },
         validationSchema:Yup.object({
             email:Yup.string().email('invalid email').required("this field is required"),
-            password:Yup.string().min(6,"Too short for password").required("please enter the password")
+            password:Yup.string().min(6,"Too short for password").required("please enter the password"),
+            name:Yup.string().min(4,'too short for name').required("name is required for login")
         }),
         onSubmit: values =>{
-            alert("email")
+            alert(`email${values.email}`)
         },
 
     })
@@ -43,7 +44,7 @@ export const Formsection = () => {
             onBlur={formik.handleBlur}
             value={formik.values.password}
             />
-            {formik.touched?.email && formik.errors?.email && (
+            {formik.touched?.password && formik.errors?.password && (
   <div className="text-red-500 text-sm">{formik.errors.password}</div>
 )}
             <p>name</p>
@@ -54,6 +55,7 @@ export const Formsection = () => {
             onChange={formik.handleChange}
             value={formik.values.name}
             />
+            {formik.errors?.name && (<div className="text-red-500 text-sm">{formik.errors.name}</div>)}
             <button
             className='bg-red-300 w-full rounded-2xl h-10' 
             type="submit">Login</button>
